@@ -18,7 +18,10 @@ public class JCompare {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        new FileToTokens().convertFileToTokens("/home/kareem/NetBeansProjects/JCompare/src/jcompare/Monitor.java");
+//        String st= new FileToTokens().convertFileToTokens("/home/kareem/NetBeansProjects/JCompare/src/jcompare/Monitor.java");
+//        System.out.println(st);
+        //System.out.println(new Jconstants().isReserveredWord("while"));
+        System.out.println(new Jconstants().isSpecialChar('*'));
     }
     
 }

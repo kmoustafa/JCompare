@@ -18,61 +18,61 @@ public class Jconstants {
     //Table for all of Java Reservered Words
     private static Hashtable<String,Integer> reserverdWord;
     //List of all Java Arthimatic, Logical, .... operators and signs
-    private static ArrayList<String> signs;
+    private static ArrayList<Character> signs;
     
     public Jconstants(){
    
-        signs = new ArrayList<String>();
-        signs.add("++");
-        signs.add("--");
-        signs.add("&&");
-        signs.add("||");
-        signs.add("+=");
-        signs.add("+");
-        signs.add("-=");
-        signs.add("-");
-        signs.add("*=");
-        signs.add("*");
-        signs.add("/=");
-        signs.add("/");
-        signs.add("%=");
-        signs.add("&=");
-        signs.add("|=");
-        signs.add("^=");
-        signs.add("==");
-        signs.add("!=");
-        signs.add("<=");
-        signs.add(">=");
-        signs.add("<<");
-        signs.add(">>");
-        signs.add("<<=");
-        signs.add(">>=");
-        signs.add(">>>");
-        signs.add(">>>=");
-        signs.add("(");
-        signs.add(")");
-        signs.add("{");
-        signs.add("}");
-        signs.add("[");
-        signs.add("]");
-        signs.add("&");
-        signs.add(",");
-        signs.add(";");
-        signs.add("<");
-        signs.add("=");
-        signs.add(">");
-        signs.add("?");
-        signs.add("!");
-        signs.add(":");
-        signs.add(".");
-        signs.add("%");
-        signs.add("^");
-        signs.add("|");
-        signs.add("~");
-        signs.add("\\");
-        signs.add("/*");
-        signs.add("//");
-        signs.add("*/");
+        signs = new ArrayList<Character>();
+//        signs.add("+");
+//        signs.add("--");
+//        signs.add("&&");
+//        signs.add("||");
+//        signs.add("+=");
+        signs.add('+');
+//        signs.add("-=");
+        signs.add('-');
+//        signs.add("*=");
+        signs.add('*');
+//        signs.add("/=");
+        signs.add('/');
+//        signs.add("%=");
+//        signs.add("&=");
+//        signs.add("|=");
+//        signs.add("^=");
+//        signs.add("==");
+//        signs.add("!=");
+//        signs.add("<=");
+//        signs.add(">=");
+//        signs.add("<<");
+//        signs.add(">>");
+//        signs.add("<<=");
+//        signs.add(">>=");
+//        signs.add(">>>");
+//        signs.add(">>>=");
+        signs.add('(');
+        signs.add(')');
+        signs.add('{');
+        signs.add('}');
+        signs.add('[');
+        signs.add(']');
+        signs.add('&');
+        signs.add(',');
+        signs.add(';');
+        signs.add('<');
+        signs.add('=');
+        signs.add('>');
+        signs.add('?');
+        signs.add('!');
+        signs.add(':');
+        signs.add('.');
+        signs.add('%');
+        signs.add('^');
+        signs.add('|');
+        signs.add('~');
+        signs.add((char)92);
+        //signs.add("/*");
+        //signs.add("//");
+        //signs.add("*/");
         
         reserverdWord = new Hashtable<String, Integer>();
         reserverdWord.put("assert", 35287);
@@ -133,14 +133,23 @@ public class Jconstants {
         return reserverdWord;
     }
 
-    public ArrayList<String> getSigns() {
+    public ArrayList<Character> getSigns() {
         return signs;
     }
 
     public int isReserveredWord(String word){
         
         int code = 0;
+        if(reserverdWord.containsKey(word))
+            return reserverdWord.get(word);
         return code;
+    }
+    public boolean isSpecialChar(char ch){
+        
+        if(signs.contains(ch))
+            return true;
+        
+        return false;
     } 
     
 }

@@ -22,16 +22,19 @@ import java.util.logging.Logger;
 public class FileToTokens {
     
     
-    public void convertFileToTokens(String fileName){
+    public String convertFileToTokens(String fileName){
+        
+        StringBuilder builder = new StringBuilder();
         
         BufferedReader reader = null;
         try {
             //File file = new File(fileName);
             reader = new BufferedReader(new FileReader(fileName));
-            String st ;
-            while((st = reader.readLine()) != null){
-                System.out.println(st);
+            int st ;
+            while((st = reader.read()) != -1){
+                builder.append((char)st);
             }
+            return builder.toString();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FileToTokens.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -43,5 +46,6 @@ public class FileToTokens {
                 Logger.getLogger(FileToTokens.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        return null;
     }
 }
