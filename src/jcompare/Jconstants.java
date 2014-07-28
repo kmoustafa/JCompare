@@ -70,6 +70,8 @@ public class Jconstants {
         signs.add('|');
         signs.add('~');
         signs.add((char)92);
+        //signs.add((char)13);
+        //signs.add((char)10);
         //signs.add("/*");
         //signs.add("//");
         //signs.add("*/");

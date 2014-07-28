@@ -6,7 +6,7 @@
 
 package jcompare;
 
-
+//Hey I'm Comment
 
 /**
  *
@@ -25,10 +25,13 @@ public class Monitor extends Object{
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        //Hey I'm Inner
         for (int i = 0; i < 10; i++) {
             System.out.println(" i " + i);
         }
+        /* Kimoo
+        awiiiii
+        */
     }
     
 }
