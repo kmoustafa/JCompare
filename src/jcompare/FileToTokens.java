@@ -21,7 +21,7 @@ public class FileToTokens {
 
     public String convertFileToTokens(String fileName) {
 
-        Jconstants constant = new Jconstants();
+        JConstants constant = new JConstants();
         StringBuilder builder = new StringBuilder();
         StringBuilder temp = new StringBuilder();
         boolean isLineComment = false;

@@ -20,14 +20,14 @@ import java.util.Hashtable;
  *
  * @author Kareem Moustafa, 27th July 2014 in Egypt.
  */
-public class Jconstants {
+public class JConstants {
     
     //Table for all of Java Reservered Words
     private static Hashtable<String,Integer> reserverdWord;
     //List of all Java Arthimatic, Logical, .... operators and signs
     private static ArrayList<Character> signs;
     
-    public Jconstants(){
+    public JConstants(){
    
         signs = new ArrayList<Character>();
 //        signs.add("+");
