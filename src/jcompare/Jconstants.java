@@ -1,7 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * SPDXVersion: SPDX-1.1
+ * Creator: Person: Kareem Moustafa (https://github.com/kmoustafa)
+ * Creator: Organization: TripleCheck (contact@triplecheck.de)
+ * Created: 2014-07-27T00:00:00Z
+ * FileName: ClientScript.java  
+ * FileType: SOURCE
+ * FileCopyrightText: <text> Copyright 2014 TripleCheck </text>
+ * FileComment: <text> 
+    Define the constants that will be converted from source code files.
+    </text> 
  */
 
 package jcompare;
@@ -11,7 +18,7 @@ import java.util.Hashtable;
 
 /**
  *
- * @author kareem
+ * @author Kareem Moustafa, 27th July 2014 in Egypt.
  */
 public class Jconstants {
     
