@@ -29,6 +29,7 @@ public class Monitor extends Object{
         for (int i = 0; i < 10; i++) {
             System.out.println(" i " + i);
         }
+        String st_kareem = " Kareem";
         /* Kimoo
         awiiiii
         */

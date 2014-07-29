@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.NumberFormat;
+import java.text.ParsePosition;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,6 +28,7 @@ public class FileToTokens {
         StringBuilder temp = new StringBuilder();
         boolean isLineComment = false;
         boolean isMultiLinesComment = false;
+        boolean isString = false;
         BufferedReader reader = null;
         try {
             char c = '\n';
@@ -80,16 +83,29 @@ public class FileToTokens {
                 //Writing Tokens
                 if (!isLineComment && !isMultiLinesComment) {
                     if (!constant.isSpecialChar(ch) && ch != ' ' && ch != 13 && ch != '\n') {
+                        if(ch == '"' && !isString)
+                            isString = true;
+                        else if (ch =='"' && isString)
+                            isString = false;
                         temp.append(ch);
-                    } else if (temp.length() > 0 && ch != 13 && (ch == ' ' || constant.isSpecialChar(ch))) {
-
+                    } else if (temp.length() > 0 && ch != 13 && (ch == ' ' || constant.isSpecialChar(ch)) && !isString) {
+                        //System.out.println("TOKEN : " + temp);
                         int token = constant.isReserveredWord(temp.toString());
                         if (token != 0) {
-                            System.out.println(temp.toString() + constant.isReserveredWord(temp.toString()));
-                            builder.append(token);
+                           // System.out.println(temp.toString() + constant.isReserveredWord(temp.toString()));
+                            builder.append("id" +token);
                         } else {
-                            token = TokensGenerator.getchar(temp.toString());
-                            builder.append(token);
+                            if(isNumeric(temp.toString())){
+                                token = TokensGenerator.getchar(temp.toString());
+                                builder.append("NUM" + token);
+                            }else if(temp.charAt(0) == '"'){
+                                token = TokensGenerator.getchar(temp.toString());
+                                builder.append("str" + token);
+                            }else{
+                                token = TokensGenerator.getchar(temp.toString());
+                                builder.append("id" + token);
+                            }
+                                
                         }
                         temp.delete(0, temp.length());
                     }
@@ -97,7 +113,11 @@ public class FileToTokens {
 
                 //Writing White spaces and new lines
                 if (!isLineComment && !isMultiLinesComment && (ch == '\n' || ch == ' ' || constant.isSpecialChar(ch))) {
-                    builder.append(ch);
+                    if(isString)
+                        temp.append(ch);
+                    else
+                        builder.append(ch);
+                    
                 }
 
 //                if((char)st == '\n')
@@ -120,4 +140,12 @@ public class FileToTokens {
         }
         return null;
     }
+    
+     public static boolean isNumeric(String str)
+{
+    NumberFormat formatter = NumberFormat.getInstance();
+    ParsePosition pos = new ParsePosition(0);
+  formatter.parse(str, pos);
+  return str.length() == pos.getIndex();
+}
 }
