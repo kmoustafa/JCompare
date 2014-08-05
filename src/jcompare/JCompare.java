@@ -24,9 +24,12 @@ public class JCompare {
         
         String st= new FileToTokens().convertFileToTokens("/home/kareem/NetBeansProjects/JCompare/src/jcompare/Monitor.java");
         //String st= new FileToTokens().convertFileToTokens("/home/kareem/NetBeansProjects/JCompare/src/jcompare/Item.java");
-        System.out.println(st);
-        //System.out.println(new Jconstants().isReserveredWord("while"));
-        //System.out.println(new Jconstants().isSpecialChar('*'));    
+        
+        /*
+        Just for Testing and see the string in large line
+        */
+        JOptionPane.showMessageDialog(null, st);
+   
     }
      
 }

@@ -27,6 +27,7 @@ public class FileToTokens {
         StringBuilder builder = new StringBuilder();
         StringBuilder temp = new StringBuilder();
         boolean isLineComment = false;
+        boolean end = false;
         boolean isMultiLinesComment = false;
         boolean isString = false;
         BufferedReader reader = null;
@@ -44,15 +45,15 @@ public class FileToTokens {
                  */
                 //Check if a comment begin
                 if (ch == '/' && !isMultiLinesComment && !isLineComment) {
-                    builder.append(ch);
+                    //builder.append(ch);
                     ch = (char) (reader.read());
                     if (ch == '/') {
                         isLineComment = true;
-                        builder.append(ch);
+                      //  builder.append(ch);
                         ch = (char) reader.read();
                     } else if (ch == '*') {
                         isMultiLinesComment = true;
-                        builder.append(ch);
+                        //builder.append(ch);
                         ch = (char) reader.read();
                     }
                 }
@@ -61,19 +62,22 @@ public class FileToTokens {
                 if (isLineComment && (ch == '\n' || ch == '\r')) {
                     builder.append(ch);
                     isLineComment = false;
-                } else if (isMultiLinesComment && (ch == '*')) {
-                    builder.append(ch);
+                } else if (isMultiLinesComment && (ch == '*' || ch == '\n' || ch == '\r')) {
+                    //builder.append(ch);
                     ch = (char) (reader.read());
                     if (ch == '/') {
                         isMultiLinesComment = false;
-                        builder.append(ch);
+                        end = true;
+                        //builder.append(ch);
                     } else {
-                        builder.append(ch);
+                            builder.append(' ');
                     }
                 } else if ((isLineComment) && ch != '\n' && ch != '\r') {
-                    builder.append(ch);
+                   // builder.append(ch);
                 } else if (isMultiLinesComment && ch != '*' && ch != '\r') {
-                    builder.append(ch);
+                    //if(ch =='\r')
+                       // builder.append(ch);
+                    
                 }
 
                 /*
@@ -93,17 +97,17 @@ public class FileToTokens {
                         int token = constant.isReserveredWord(temp.toString());
                         if (token != 0) {
                            // System.out.println(temp.toString() + constant.isReserveredWord(temp.toString()));
-                            builder.append("id" +token);
+                            builder.append(" id" +token);
                         } else {
                             if(isNumeric(temp.toString())){
                                 token = TokensGenerator.getchar(temp.toString());
-                                builder.append("NUM" + token);
+                                builder.append(" NUM" + token);
                             }else if(temp.charAt(0) == '"'){
                                 token = TokensGenerator.getchar(temp.toString());
-                                builder.append("str" + token);
+                                builder.append(" str" + token);
                             }else{
                                 token = TokensGenerator.getchar(temp.toString());
-                                builder.append("id" + token);
+                                builder.append(" id" + token);
                             }
                                 
                         }
@@ -115,7 +119,11 @@ public class FileToTokens {
                 if (!isLineComment && !isMultiLinesComment && (ch == '\n' || ch == ' ' || constant.isSpecialChar(ch))) {
                     if(isString)
                         temp.append(ch);
-                    else
+                    else if(ch == '/' && end)
+                        end = false;
+                    else if( ch == '\n' || ch == '\r' )
+                        builder.append(' ');
+                    else if(ch != ' ' )
                         builder.append(ch);
                     
                 }
